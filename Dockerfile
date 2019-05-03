@@ -1,5 +1,6 @@
 FROM alpine:3.12
-RUN apk --no-cache add alpine-sdk coreutils cmake sudo \
+RUN case $(arch) in arm*) echo "armhf" > /etc/apk/arch ;; esac \
+  && apk --no-cache add alpine-sdk coreutils cmake sudo \
   && adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder \
   && echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
   && mkdir /packages \
