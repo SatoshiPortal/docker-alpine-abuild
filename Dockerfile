@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.12.4
 RUN case $(arch) in arm*) echo "armhf" > /etc/apk/arch ;; esac \
   && apk --no-cache add alpine-sdk coreutils cmake sudo \
   && adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder \
